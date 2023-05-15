@@ -1,0 +1,21 @@
+{
+  "name": "e2e---sowe",
+  "version": "1.0.0",
+  "description": "e2e test for sowe.pl ",
+  "main": "index.js",
+  "scripts": {
+    "open": "npx cypress open",
+    "spec": "npx cypress run --spec 'cypress/e2e/home.cy.js'",
+    "all": "npx cypress run --e2e 'cypress/e2e/*.cy.js'",
+    "chrome": "npx cypress run --browser chrome --spec 'cypress/e2e/home.cy.js'",
+    "firefox": "npm run spec -- --browser firefox",
+    "edge": "npm run spec -- --browser edge",
+    "browser": "npm run spec -- --browser firefox & npm run spec -- --browser edge npm run spec -- --browser chrome",
+    "browserAll": "npm run all -- --browser firefox & npm run all -- --browser edge npm run all -- --browser chrome"
+  },
+  "author": "Bartosz Jasyk",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.12.0"
+  }
+}
