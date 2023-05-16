@@ -11,7 +11,7 @@ describe('Sowe - home page - E2E', () => {
     cy.visit('/');
   });
 
-  // Sowe site have issue with " fb is not defined" code belowe make this test to pass
+  // Sowe site have issue with " fb is not defined" code belowe skip this issue and test can go without any problems.
 
   Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
@@ -24,12 +24,12 @@ describe('Sowe - home page - E2E', () => {
     cy.title().should('contain', 'Sowe');
   });
 
-  it.only('Visible of header elements: main nav, logo, language, cart, loop', () => {
+  it('Visible of header elements: main nav, logo, language, cart, loop', () => {
     cy.get('#headerwrap a[href]').should('be.visible');
     cy.get('#headerwrap a[href]').each(($el) => {
       const linkHref = $el.attr('href');
 
-      //   if (linkHref === 'some not working link') {
+      //   if (linkHref === 'put here not working link') {
       //     cy.log(`Skipping link: ${linkHref}`);
       //     return;
       //   }
@@ -39,4 +39,24 @@ describe('Sowe - home page - E2E', () => {
       });
     });
   });
+
+  it.only('should have all "SKLEP" links and verify correct url', () => {
+    cy.get('#header').should('be.visible');
+    cy.get('#main-nav').contains('SKLEP').trigger('focus');
+    cy.get('.mega-sub-menu.sub-menu').contains('Zasłony').trigger('focus', { force: true });
+    cy.contains('Komplet zasłon Czaple').click({ force: true });
+  });
+
+  // it.only('Check all links in main nav"', () => {
+  //   cy.contains('SKLEP').click();
+  //   cy.get('.mega-sub-menu.sub-menu').should('be.visible');
+  //   cy.get('.mega-sub-menu.sub-menu a').as('linkList');
+  //   cy.get('@linkList').each(($link) => {
+  //     cy.wrap($link).should('have.attr', 'href');
+  //     const linkTitle = $link.text().trim().toLocaleLowerCase(); // get the title of the current link
+  //     cy.wrap($link).click();
+  //     cy.title().should('contain', linkTitle); // verify the title of the current link
+  //     cy.go('back');
+  //   });
+  // });
 });
