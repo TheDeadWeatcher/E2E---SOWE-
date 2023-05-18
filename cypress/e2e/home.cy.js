@@ -40,23 +40,30 @@ describe('Sowe - home page - E2E', () => {
     });
   });
 
-  it.only('should have all "SKLEP" links and verify correct url', () => {
-    cy.get('#header').should('be.visible');
-    cy.get('#main-nav').contains('SKLEP').trigger('focus');
-    cy.get('.mega-sub-menu.sub-menu').contains('Zasłony').trigger('focus', { force: true });
-    cy.contains('Komplet zasłon Czaple').click({ force: true });
+  it('should search for a valid product', () => {
+    const searchTerm = 'Komplet zasłon Czaple';
+    cy.get('[aria-label="Search"]').eq(1).should('exist').click({ force: true });
+    cy.get('form#searchform.tf_rel.tf_hide').invoke('show');
+    cy.get('#s').invoke('show').type('Komplet zasłon Czaple {enter}');
+    cy.get('.page-title').should('contain', searchTerm);
   });
 
-  // it.only('Check all links in main nav"', () => {
-  //   cy.contains('SKLEP').click();
-  //   cy.get('.mega-sub-menu.sub-menu').should('be.visible');
-  //   cy.get('.mega-sub-menu.sub-menu a').as('linkList');
-  //   cy.get('@linkList').each(($link) => {
-  //     cy.wrap($link).should('have.attr', 'href');
-  //     const linkTitle = $link.text().trim().toLocaleLowerCase(); // get the title of the current link
-  //     cy.wrap($link).click();
-  //     cy.title().should('contain', linkTitle); // verify the title of the current link
-  //     cy.go('back');
-  //   });
-  // });
+  it('should search for a invalid product', () => {
+    const searchTerm = 'robot vader';
+    cy.get('[aria-label="Search"]').eq(1).should('exist').click({ force: true });
+    cy.get('form#searchform.tf_rel.tf_hide').invoke('show');
+    cy.get('#s').invoke('show').type('robot vader {enter}');
+    cy.get('#content p').should('have.text', 'Sorry, nothing found.');
+    cy.get('.page-title').should('contain', searchTerm);
+  });
+
+  it('Verify visiblity buttons and correct url', () => {
+    cy.get('.sp-layer.bsp-slide-button').should('be.visible');
+    cy.get('.sp-layer.bsp-slide-button').each(($el) => {
+      const linkHref = $el.attr('href');
+      cy.request(linkHref).then((response) => {
+        expect(response.status).to.eq(200);
+      });
+    });
+  });
 });
