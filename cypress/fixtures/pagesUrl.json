@@ -1,3 +1,5 @@
 {
-    "homeUrl": "https://www.sowe.pl/" 
+    "homeUrl": "https://www.sowe.pl/",
+    "cartUrl": "https://www.sowe.pl/koszyk/",
+    "shopUrl": "https://www.sowe.pl/sklep/"
 }

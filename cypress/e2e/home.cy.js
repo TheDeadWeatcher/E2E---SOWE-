@@ -11,7 +11,7 @@ describe('Sowe - home page - E2E', () => {
     cy.visit('/');
   });
 
-  // Sowe site have issue with " fb is not defined" code belowe skip this issue and test can go without any problems.
+  // Sowe site have issue with " fb is not defined" code belowe skip this issue and test will run.
 
   Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
@@ -40,6 +40,24 @@ describe('Sowe - home page - E2E', () => {
     });
   });
 
+  it('Should click on GTtranslate and verify visibilty of popup also correct language', () => {
+    cy.get('#icon-menu').contains('Polish').should('be.visible').click();
+    cy.get('div.gt_languages a').should('have.length', 6);
+    cy.get('.gt_languages').contains('English').should('be.visible').click();
+    cy.get('#icon-menu').contains('English').should('be.visible').click();
+  });
+
+  it('Should click on cart, verify url, title, back to shop button', () => {
+    cy.get('#cart-icon-count').click();
+    cy.url().should('eq', url.cartUrl);
+    cy.get('p.cart-empty.woocommerce-info').then(($title) => {
+      const title = $title.text();
+      cy.get('p.cart-empty.woocommerce-info').should('have.text', title);
+    });
+    cy.get('.return-to-shop').contains('Wróć do sklepu').should('be.visible').click();
+    cy.url().should('eq', url.shopUrl);
+  });
+
   it('should search for a valid product', () => {
     const searchTerm = 'Komplet zasłon Czaple';
     cy.get('[aria-label="Search"]').eq(1).should('exist').click({ force: true });
@@ -57,9 +75,13 @@ describe('Sowe - home page - E2E', () => {
     cy.get('.page-title').should('contain', searchTerm);
   });
 
-  it('Verify visiblity buttons and correct url', () => {
-    cy.get('.sp-layer.bsp-slide-button').should('be.visible');
-    cy.get('.sp-layer.bsp-slide-button').each(($el) => {
+  it.only('Verify visiblity slider buttons and active url', () => {
+    cy.get('[data-index]').should('be.visible');
+  });
+
+  it('Verify visiblity slider buttons and active url', () => {
+    cy.get('[data-transition="slideTopFade"]').should('be.visible');
+    cy.get('[data-transition="slideTopFade"]').each(($el) => {
       const linkHref = $el.attr('href');
       cy.request(linkHref).then((response) => {
         expect(response.status).to.eq(200);
