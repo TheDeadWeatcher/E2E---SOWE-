@@ -75,17 +75,56 @@ describe('Sowe - home page - E2E', () => {
     cy.get('.page-title').should('contain', searchTerm);
   });
 
-  it.only('Verify visiblity slider buttons and active url', () => {
-    cy.get('[data-index]').should('be.visible');
-  });
-
   it('Verify visiblity slider buttons and active url', () => {
-    cy.get('[data-transition="slideTopFade"]').should('be.visible');
-    cy.get('[data-transition="slideTopFade"]').each(($el) => {
+    cy.get('a.sp-layer.bsp-slide-button').should('be.visible');
+    cy.get('a.sp-layer.bsp-slide-button').each(($el) => {
       const linkHref = $el.attr('href');
       cy.request(linkHref).then((response) => {
         expect(response.status).to.eq(200);
       });
     });
+  });
+
+  it('Verify visiblity slider buttons and active url', () => {
+    cy.get('[data-transition="slideTopFade"]').should('be.visible');
+    // cy.get('[data-transition="slideTopFade"]').each(($el) => {
+    //   const linkHref = $el.attr('href');
+    //   cy.request(linkHref).then((response) => {
+    //     expect(response.status).to.eq(200);
+    //   });
+    // });
+  });
+
+  it('Verify visiblity "wycena" section also verify visibility and correct url of button', () => {
+    cy.get('[data-css_id="xuwu420"]')
+      .should('be.visible')
+      .contains('WYCENA')
+      .should('be.visible')
+      .click({ force: true });
+    cy.url().should('eq', url.contactUrl);
+  });
+
+  it.only('Verify visiblity "Nowości" section also verify lenght of product', () => {
+    cy.get('[data-css_id="3ca01f5"]')
+      .should('be.visible')
+      .find('#tb_7b96d76')
+      .find('.post-image')
+      .should('have.length', 4);
+
+    cy.get('div.product-content-inner h3').should('exist').contains('Komplet zasłon Czaple').click({ force: true });
+    cy.go('back');
+
+    //  zrob ztego petle przejdz po elementach
+
+    // cy.get('div.product-content-inner h3 a').should('exist');
+    // cy.get('div.product-content-inner h3 a').as('linkList');
+    // cy.get('@linkList').each(($link) => {
+    //   cy.wrap($link).should('have.attr', 'href');
+    //   const linkTitle = $link.text().trim(); // get the title of the current link
+    //   cy.wrap($link).click({ force: true });
+    //   cy.title().should('contain', linkTitle); // verify the title of the current link
+    //   cy.go('back');
+
+    // });
   });
 });
