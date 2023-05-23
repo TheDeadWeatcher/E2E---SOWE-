@@ -115,16 +115,5 @@ describe('Sowe - home page - E2E', () => {
     cy.go('back');
 
     //  zrob ztego petle przejdz po elementach
-
-    // cy.get('div.product-content-inner h3 a').should('exist');
-    // cy.get('div.product-content-inner h3 a').as('linkList');
-    // cy.get('@linkList').each(($link) => {
-    //   cy.wrap($link).should('have.attr', 'href');
-    //   const linkTitle = $link.text().trim(); // get the title of the current link
-    //   cy.wrap($link).click({ force: true });
-    //   cy.title().should('contain', linkTitle); // verify the title of the current link
-    //   cy.go('back');
-
-    // });
   });
 });
