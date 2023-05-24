@@ -86,13 +86,13 @@ describe('Sowe - home page - E2E', () => {
   });
 
   it('Verify visiblity slider buttons and active url', () => {
-    cy.get('[data-transition="slideTopFade"]').should('be.visible');
-    // cy.get('[data-transition="slideTopFade"]').each(($el) => {
-    //   const linkHref = $el.attr('href');
-    //   cy.request(linkHref).then((response) => {
-    //     expect(response.status).to.eq(200);
-    //   });
-    // });
+    cy.get('a.sp-layer.bsp-slide-button').should('be.visible');
+    cy.get('a.sp-layer.bsp-slide-button').each(($el) => {
+      const linkHref = $el.attr('href');
+      cy.request(linkHref).then((response) => {
+        expect(response.status).to.eq(200);
+      });
+    });
   });
 
   it('Verify visiblity "wycena" section also verify visibility and correct url of button', () => {
@@ -104,16 +104,39 @@ describe('Sowe - home page - E2E', () => {
     cy.url().should('eq', url.contactUrl);
   });
 
-  it.only('Verify visiblity "Nowości" section also verify lenght of product', () => {
-    cy.get('[data-css_id="3ca01f5"]')
-      .should('be.visible')
-      .find('#tb_7b96d76')
-      .find('.post-image')
-      .should('have.length', 4);
+  it('Verify visiblity "Nowości" section also verify lenght of product', () => {
+    cy.get('#tb_7b96d76>ul>li').should('have.length', 4);
 
-    cy.get('div.product-content-inner h3').should('exist').contains('Komplet zasłon Czaple').click({ force: true });
-    cy.go('back');
+    const links = [
+      { label: 'Komplet zasłon Czaple', url: 'https://www.sowe.pl/produkt/komplet-zaslon-czaple/' },
+      { label: 'Komplet zasłon Angels', url: 'https://www.sowe.pl/produkt/komplet-zaslon-angels/' },
+      { label: 'Komplet zasłon Dream House', url: 'https://www.sowe.pl/produkt/komplet-zaslon-dream-house/' },
+      { label: 'Komplet zasłon Town House', url: 'https://www.sowe.pl/produkt/komplet-zaslon-town-house/' },
+    ];
 
-    //  zrob ztego petle przejdz po elementach
+    cy.get('div.product-content-inner h3 a').each((link) => {
+      const linkText = link.text();
+      const linkHref = link.attr('href');
+
+      const matchingLink = links.find((l) => l.label === linkText);
+      if (matchingLink) {
+        cy.request(linkHref).then((response) => {
+          expect(response.status).to.eq(200);
+          expect(linkHref).to.equal(matchingLink.url);
+        });
+      }
+    });
   });
+
+  // it.only('Verify visiblity Kategory: rzeźba, surrealizm, vintage, buttons and correct url', () => {
+  //   cy.get('[data-css_id="05s0658"]').find('h3.module-title').should('have.length', 3);
+
+  //   cy.get('[data-css_id="05s0658"]')
+  //     .find('h3.module-title')
+  //     .should('exist')
+  //     .each(($el) => {
+  //       cy.get('[data-css_id="05s0658"]').find('h3.module-title').click({ force: true });
+  //       cy.go('back');
+  //     });
+  // });
 });
