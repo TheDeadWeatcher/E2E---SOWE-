@@ -128,15 +128,35 @@ describe('Sowe - home page - E2E', () => {
     });
   });
 
-  // it.only('Verify visiblity Kategory: rzeźba, surrealizm, vintage, buttons and correct url', () => {
-  //   cy.get('[data-css_id="05s0658"]').find('h3.module-title').should('have.length', 3);
+  it('Verify visiblity Kategory: rzeźba, surrealizm, vintage, buttons and correct url', () => {
+    cy.get('[data-css_id="05s0658"]').find('h3.module-title').should('have.length', 3);
 
-  //   cy.get('[data-css_id="05s0658"]')
-  //     .find('h3.module-title')
-  //     .should('exist')
-  //     .each(($el) => {
-  //       cy.get('[data-css_id="05s0658"]').find('h3.module-title').click({ force: true });
-  //       cy.go('back');
-  //     });
-  // });
+    cy.get('.image-pro-overlay-inner a')
+      .should('exist')
+      .each(($el) => {
+        const linkHref = $el.attr('href');
+        cy.request(linkHref).then((response) => {
+          expect(response.status).to.eq(200);
+        });
+      });
+
+    // cy.get('.module-title').each(($el, index) => {
+    //   cy.log('index: ' + index + ' : ' + $el.text());
+    // });
+
+    cy.get('.module-title').each(($el, index) => {
+      const textH3 = $el.text().replace(/Ź/g, 'Z').toLocaleLowerCase();
+      if ($el.text()) {
+        if (index === 0) {
+          cy.get('.image-pro-overlay-inner a').eq(0).click({ force: true });
+        } else if (index === 1) {
+          cy.get('.image-pro-overlay-inner a').eq(1).click({ force: true });
+        } else if (index === 2) {
+          cy.get('.image-pro-overlay-inner a').eq(2).click({ force: true });
+        }
+        cy.url().should('contain', textH3);
+        cy.go('back');
+      }
+    });
+  });
 });
