@@ -105,82 +105,42 @@ describe('Sowe - home page - E2E', () => {
   });
 
   it('Verify visiblity "Nowości" section also verify lenght, correct url of section item', () => {
-    cy.get('#tb_7b96d76>ul>li').should('have.length', 4);
-
-    const links = [
-      { label: 'Komplet zasłon Czaple', url: 'https://www.sowe.pl/produkt/komplet-zaslon-czaple/' },
-      { label: 'Komplet zasłon Angels', url: 'https://www.sowe.pl/produkt/komplet-zaslon-angels/' },
-      { label: 'Komplet zasłon Dream House', url: 'https://www.sowe.pl/produkt/komplet-zaslon-dream-house/' },
-      { label: 'Komplet zasłon Town House', url: 'https://www.sowe.pl/produkt/komplet-zaslon-town-house/' },
-    ];
-
-    cy.get('div.product-content-inner h3 a').each((link) => {
-      const linkText = link.text();
-      const linkHref = link.attr('href');
-
-      const matchingLink = links.find((l) => l.label === linkText);
-      if (matchingLink) {
-        cy.request(linkHref).then((response) => {
-          expect(response.status).to.eq(200);
-          expect(linkHref).to.equal(matchingLink.url);
-        });
-      }
-    });
+    cy.get('#tb_7b96d76').find('.product_title').should('have.length', 4);
+    cy.specialCategory('#tb_7b96d76', '.product_title a');
   });
 
   it('Verify visiblity Kategory: rzeźba, surrealizm, vintage, buttons and correct url', () => {
     cy.get('[data-css_id="05s0658"]').find('h3.module-title').should('have.length', 3);
 
-    cy.get('.image-pro-overlay-inner a')
-      .should('exist')
-      .each(($el) => {
-        const linkHref = $el.attr('href');
-        cy.request(linkHref).then((response) => {
-          expect(response.status).to.eq(200);
-        });
+    cy.get('[data-css_id="05s0658"]')
+      .find('h3.module-title')
+      .each(($el, index) => {
+        const textH3 = $el.text().replace(/Ź/g, 'Z').toLocaleLowerCase();
+        if ($el.text()) {
+          if (index === 0) {
+            cy.get('.image-pro-overlay-inner a').eq(0).click({ force: true });
+          } else if (index === 1) {
+            cy.get('.image-pro-overlay-inner a').eq(1).click({ force: true });
+          } else if (index === 2) {
+            cy.get('.image-pro-overlay-inner a').eq(2).click({ force: true });
+          }
+          cy.url().should('contain', textH3);
+          cy.go('back');
+        }
       });
 
-    // cy.get('.module-title').each(($el, index) => {
-    //   cy.log('index: ' + index + ' : ' + $el.text());  // show list and index of Kategory
-    // });
-
-    cy.get('.module-title').each(($el, index) => {
-      const textH3 = $el.text().replace(/Ź/g, 'Z').toLocaleLowerCase();
-      if ($el.text()) {
-        if (index === 0) {
-          cy.get('.image-pro-overlay-inner a').eq(0).click({ force: true });
-        } else if (index === 1) {
-          cy.get('.image-pro-overlay-inner a').eq(1).click({ force: true });
-        } else if (index === 2) {
-          cy.get('.image-pro-overlay-inner a').eq(2).click({ force: true });
-        }
-        cy.url().should('contain', textH3);
-        cy.go('back');
-      }
-    });
+    // find a method to use this command "filter"
+    // cy.specialCategory('[data-css_id="05s0658"]', 'h3.module-title', '.image-pro-overlay-inner a');
   });
 
   it('Verify visiblity "Promocje" section also verify lenght, correct url of section item', () => {
     cy.get('#tb_7b96d76>ul>li').should('have.length', 4);
+    cy.specialCategory('#tb_2y8o240', '.product_title a');
+  });
 
-    const links = [
-      { label: 'Komplet zasłon Twins 200', url: 'https://www.sowe.pl/produkt/komplet-zaslon-twins-200/' },
-      { label: 'Komplet zasłon Skarabeusz 200', url: 'https://www.sowe.pl/produkt/komplet-zaslon-skarabeusz-200/' },
-      { label: 'Komplet zasłon Nature 250', url: 'https://www.sowe.pl/produkt/komplet-zaslon-nature-250/' },
-      { label: 'Komplet zasłon Bella 250', url: 'https://www.sowe.pl/produkt/komplet-zaslon-bella-250/' },
-    ];
-
-    cy.get('div.product-content-inner h3 a').each((link) => {
-      const linkText = link.text();
-      const linkHref = link.attr('href');
-
-      const matchingLink = links.find((l) => l.label === linkText);
-      if (matchingLink) {
-        cy.request(linkHref).then((response) => {
-          expect(response.status).to.eq(200);
-          expect(linkHref).to.equal(matchingLink.url);
-        });
-      }
-    });
+  it('Should verify visibilty and correct url of 3 banners', () => {
+    cy.bannerCheck('[data-css_id="f0b7677"] a');
+    cy.bannerCheck('[data-css_id="aace4fc"] a');
+    cy.bannerCheck('[data-css_id="91up430"] a');
   });
 });
