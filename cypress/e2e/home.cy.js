@@ -104,7 +104,7 @@ describe('Sowe - home page - E2E', () => {
     cy.url().should('eq', url.contactUrl);
   });
 
-  it('Verify visiblity "Nowości" section also verify lenght of product', () => {
+  it('Verify visiblity "Nowości" section also verify lenght, correct url of section item', () => {
     cy.get('#tb_7b96d76>ul>li').should('have.length', 4);
 
     const links = [
@@ -141,7 +141,7 @@ describe('Sowe - home page - E2E', () => {
       });
 
     // cy.get('.module-title').each(($el, index) => {
-    //   cy.log('index: ' + index + ' : ' + $el.text());
+    //   cy.log('index: ' + index + ' : ' + $el.text());  // show list and index of Kategory
     // });
 
     cy.get('.module-title').each(($el, index) => {
@@ -156,6 +156,30 @@ describe('Sowe - home page - E2E', () => {
         }
         cy.url().should('contain', textH3);
         cy.go('back');
+      }
+    });
+  });
+
+  it('Verify visiblity "Promocje" section also verify lenght, correct url of section item', () => {
+    cy.get('#tb_7b96d76>ul>li').should('have.length', 4);
+
+    const links = [
+      { label: 'Komplet zasłon Twins 200', url: 'https://www.sowe.pl/produkt/komplet-zaslon-twins-200/' },
+      { label: 'Komplet zasłon Skarabeusz 200', url: 'https://www.sowe.pl/produkt/komplet-zaslon-skarabeusz-200/' },
+      { label: 'Komplet zasłon Nature 250', url: 'https://www.sowe.pl/produkt/komplet-zaslon-nature-250/' },
+      { label: 'Komplet zasłon Bella 250', url: 'https://www.sowe.pl/produkt/komplet-zaslon-bella-250/' },
+    ];
+
+    cy.get('div.product-content-inner h3 a').each((link) => {
+      const linkText = link.text();
+      const linkHref = link.attr('href');
+
+      const matchingLink = links.find((l) => l.label === linkText);
+      if (matchingLink) {
+        cy.request(linkHref).then((response) => {
+          expect(response.status).to.eq(200);
+          expect(linkHref).to.equal(matchingLink.url);
+        });
       }
     });
   });
