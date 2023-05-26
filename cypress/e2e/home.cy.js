@@ -25,19 +25,7 @@ describe('Sowe - home page - E2E', () => {
   });
 
   it('Visible of header elements: main nav, logo, language, cart, loop', () => {
-    cy.get('#headerwrap a[href]').should('be.visible');
-    cy.get('#headerwrap a[href]').each(($el) => {
-      const linkHref = $el.attr('href');
-
-      //   if (linkHref === 'put here not working link') {
-      //     cy.log(`Skipping link: ${linkHref}`);
-      //     return;
-      //   }
-
-      cy.request(linkHref).then((response) => {
-        expect(response.status).to.eq(200);
-      });
-    });
+    cy.checkLink('#headerwrap a[href]');
   });
 
   it('Should click on GTtranslate and verify visibilty of popup also correct language', () => {
@@ -76,23 +64,11 @@ describe('Sowe - home page - E2E', () => {
   });
 
   it('Verify visiblity slider buttons and active url', () => {
-    cy.get('a.sp-layer.bsp-slide-button').should('be.visible');
-    cy.get('a.sp-layer.bsp-slide-button').each(($el) => {
-      const linkHref = $el.attr('href');
-      cy.request(linkHref).then((response) => {
-        expect(response.status).to.eq(200);
-      });
-    });
+    cy.checkLink('a.sp-layer.bsp-slide-button');
   });
 
   it('Verify visiblity slider buttons and active url', () => {
-    cy.get('a.sp-layer.bsp-slide-button').should('be.visible');
-    cy.get('a.sp-layer.bsp-slide-button').each(($el) => {
-      const linkHref = $el.attr('href');
-      cy.request(linkHref).then((response) => {
-        expect(response.status).to.eq(200);
-      });
-    });
+    cy.checkLink('a.sp-layer.bsp-slide-button');
   });
 
   it('Verify visiblity "wycena" section also verify visibility and correct url of button', () => {
@@ -142,5 +118,31 @@ describe('Sowe - home page - E2E', () => {
     cy.bannerCheck('[data-css_id="f0b7677"] a');
     cy.bannerCheck('[data-css_id="aace4fc"] a');
     cy.bannerCheck('[data-css_id="91up430"] a');
+  });
+
+  it('Should verify lengh of articyle and correct url of "Blog" section', () => {
+    cy.contains('Blog').should('be.visible');
+    cy.checkIndex('.post-content-inner').should('have.length', 4);
+    cy.specialCategory('.module.module-post.tb_b874e40 ', '.post-content-inner a');
+  });
+  it('Should verify lengh of articyle and correct url of "Instagram" section', () => {
+    cy.contains('INSTAGRAM').should('be.visible');
+    cy.get('.sbi_photo_wrap').should('have.length', 20);
+    cy.get('.sbi_photo_wrap').find('a').eq(10).invoke('removeAttr', 'target').click();
+    cy.origin('https://www.instagram.com', () => {
+      cy.url().should('include', 'https://www.instagram.com');
+      cy.go('back');
+    });
+    cy.url().should('eq', url.homeUrl);
+    cy.contains('Load More...').should('be.visible');
+    cy.get('#sbi_load a').invoke('removeAttr', 'target').eq(1).should('be.visible').click();
+    cy.origin('https://www.instagram.com', () => {
+      cy.url().should('include', 'https://www.instagram.com/sowe.pl/');
+      cy.go('back');
+    });
+  });
+
+  it('Should verify visibility of all links in footer section', () => {
+    cy.get('#footerwrap').invoke('removeAttr', 'hidden').should('exist');
   });
 });

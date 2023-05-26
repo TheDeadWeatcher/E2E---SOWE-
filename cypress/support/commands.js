@@ -23,7 +23,13 @@ Cypress.Commands.add('specialCategory', ($selector1, $selector2) => {
   cy.get($selector1)
     .find($selector2)
     .each(($el, index) => {
-      const textH3 = $el.text().replace(/ł/g, 'l').toLocaleLowerCase().replace(/ /g, '-').replace(/Ź/g, 'Z');
+      const textH3 = $el
+        .text()
+        .replace(/ł/g, 'l')
+        .replace(/ /g, '-')
+        .replace(/Ź/g, 'Z')
+        .replace(/ć/g, 'c')
+        .toLocaleLowerCase();
       if ($el.text()) {
         if (index === 0) {
           cy.get($selector1).find($selector2).eq(0).click({ force: true });
@@ -39,6 +45,23 @@ Cypress.Commands.add('specialCategory', ($selector1, $selector2) => {
       }
     });
 });
+
+Cypress.Commands.add('checkLink', ($selector) => {
+  cy.get($selector).should('be.visible');
+  cy.get($selector).each(($el) => {
+    const linkHref = $el.attr('href');
+    cy.request(linkHref).then((response) => {
+      expect(response.status).to.eq(200);
+    });
+  });
+});
+
+Cypress.Commands.add('checkIndex', ($selector) => {
+  cy.get($selector).each(($el, index, list) => {
+    cy.log('Index: ' + index + ' : ' + $el.text());
+  });
+});
+
 //
 //
 // -- This is a parent command --
