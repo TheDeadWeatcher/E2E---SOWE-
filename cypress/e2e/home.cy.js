@@ -142,7 +142,21 @@ describe('Sowe - home page - E2E', () => {
     });
   });
 
-  it('Should verify visibility of all links in footer section', () => {
-    cy.get('#footerwrap').invoke('removeAttr', 'hidden').should('exist');
+  it.only('Should verify visibility of all links in footer section also check title and url', () => {
+    cy.get('#footer a').should('have.length', 9);
+    // logo
+    cy.get('#media_image-2').click({ force: true });
+    cy.url().should('eq', url.homeUrl);
+    // rest
+    cy.get('#menu-footer-nav a').each(($link) => {
+      cy.wrap($link).then(($link) => {
+        const href = $link.attr('href');
+        const linkTitle = $link.text().trim();
+        cy.visit(href);
+        cy.url().should('include', href);
+        cy.title().should('include', linkTitle);
+        cy.go('back');
+      });
+    });
   });
 });
