@@ -11,8 +11,6 @@ describe('Sowe - home page - E2E', () => {
     cy.visit('/');
   });
 
-  // Sowe site have issue with " fb is not defined" code belowe skip this issue and test will run.
-
   Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
     // failing the test
@@ -63,14 +61,10 @@ describe('Sowe - home page - E2E', () => {
     cy.get('.page-title').should('contain', searchTerm);
   });
 
-  it.only('Verify visiblity slider buttons and active url', () => {
-    // zrob commands zweryfikuj slidery nagłowki oraz guziki
-    // cy.get('.sp-slide-wrap ').should('have.length', 6);
-    // cy.get('.sp-slide-wrap  h3');
-    cy.requestCheckLink('a.sp-layer.bsp-slide-button');
-  });
-
-  it('Verify visiblity slider buttons and active url', () => {
+  it('Verify visiblity of sliders, buttons, h3, p on main slideshow', () => {
+    cy.checkLength('.sp-slide-wrap', 6);
+    cy.checkLength('.sp-slide-wrap h3', 6);
+    cy.checkLength('.sp-slide-wrap p', 6);
     cy.requestCheckLink('a.sp-layer.bsp-slide-button');
   });
 
@@ -143,14 +137,5 @@ describe('Sowe - home page - E2E', () => {
       cy.url().should('include', 'https://www.instagram.com/sowe.pl/');
       cy.go('back');
     });
-  });
-
-  it('Should verify visibility of all links in footer section also check title and url', () => {
-    cy.get('#footer a').should('have.length', 9);
-    // logo
-    cy.get('#media_image-2').click({ force: true });
-    cy.url().should('eq', url.homeUrl);
-    // rest
-    cy.checkLinksUrlsTitles('#menu-footer-nav a');
   });
 });

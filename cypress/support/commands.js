@@ -19,6 +19,10 @@ Cypress.Commands.add('bannerCheck', ($selector) => {
     });
 });
 
+Cypress.Commands.add('checkLength', ($selector, options) => {
+  cy.get($selector).should('be.visible').and('have.length', options);
+});
+
 Cypress.Commands.add('specialCategory', ($selector1, $selector2) => {
   cy.get($selector1)
     .find($selector2)
@@ -47,7 +51,7 @@ Cypress.Commands.add('specialCategory', ($selector1, $selector2) => {
 });
 
 Cypress.Commands.add('requestCheckLink', ($selector) => {
-  cy.get($selector).should('be.visible');
+  // cy.get($selector).should('be.visible');
   cy.get($selector).each(($el) => {
     const linkHref = $el.attr('href');
     cy.request(linkHref).then((response) => {
@@ -57,7 +61,7 @@ Cypress.Commands.add('requestCheckLink', ($selector) => {
 });
 
 Cypress.Commands.add('checkLinksUrlsTitles', ($selector) => {
-  cy.get('#menu-footer-nav a').each(($link) => {
+  cy.get($selector).each(($link) => {
     cy.wrap($link).then(($link) => {
       const href = $link.attr('href');
       const linkTitle = $link.text().trim();

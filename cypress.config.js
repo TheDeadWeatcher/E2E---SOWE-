@@ -9,7 +9,7 @@ module.exports = defineConfig({
     viewportHeight: 1080,
     viewportWidth: 1920,
     hideXHRInCommandLog: true,
-    video: true,
+    video: false,
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx,feature}',
     retries: {
       runMode: 0,

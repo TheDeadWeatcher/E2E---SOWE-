@@ -2,5 +2,7 @@
     "homeUrl": "https://www.sowe.pl/",
     "cartUrl": "https://www.sowe.pl/koszyk/",
     "shopUrl": "https://www.sowe.pl/sklep/",
-    "contactUrl": "https://www.sowe.pl/contact/"
+    "contactUrl": "https://www.sowe.pl/contact/",
+    "czapleProdukt": "https://www.sowe.pl/produkt/komplet-zaslon-czaple/",
+    "sklepUrl": "https://www.sowe.pl/sklep/"
 }
