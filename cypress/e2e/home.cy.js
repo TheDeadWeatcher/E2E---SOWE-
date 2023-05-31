@@ -63,7 +63,10 @@ describe('Sowe - home page - E2E', () => {
     cy.get('.page-title').should('contain', searchTerm);
   });
 
-  it('Verify visiblity slider buttons and active url', () => {
+  it.only('Verify visiblity slider buttons and active url', () => {
+    // zrob commands zweryfikuj slidery nagłowki oraz guziki
+    // cy.get('.sp-slide-wrap ').should('have.length', 6);
+    // cy.get('.sp-slide-wrap  h3');
     cy.requestCheckLink('a.sp-layer.bsp-slide-button');
   });
 
