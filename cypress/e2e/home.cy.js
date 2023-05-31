@@ -25,7 +25,7 @@ describe('Sowe - home page - E2E', () => {
   });
 
   it('Visible of header elements: main nav, logo, language, cart, loop', () => {
-    cy.checkLink('#headerwrap a[href]');
+    cy.requestCheckLink('#headerwrap a[href]');
   });
 
   it('Should click on GTtranslate and verify visibilty of popup also correct language', () => {
@@ -64,11 +64,11 @@ describe('Sowe - home page - E2E', () => {
   });
 
   it('Verify visiblity slider buttons and active url', () => {
-    cy.checkLink('a.sp-layer.bsp-slide-button');
+    cy.requestCheckLink('a.sp-layer.bsp-slide-button');
   });
 
   it('Verify visiblity slider buttons and active url', () => {
-    cy.checkLink('a.sp-layer.bsp-slide-button');
+    cy.requestCheckLink('a.sp-layer.bsp-slide-button');
   });
 
   it('Verify visiblity "wycena" section also verify visibility and correct url of button', () => {
@@ -142,21 +142,12 @@ describe('Sowe - home page - E2E', () => {
     });
   });
 
-  it.only('Should verify visibility of all links in footer section also check title and url', () => {
+  it('Should verify visibility of all links in footer section also check title and url', () => {
     cy.get('#footer a').should('have.length', 9);
     // logo
     cy.get('#media_image-2').click({ force: true });
     cy.url().should('eq', url.homeUrl);
     // rest
-    cy.get('#menu-footer-nav a').each(($link) => {
-      cy.wrap($link).then(($link) => {
-        const href = $link.attr('href');
-        const linkTitle = $link.text().trim();
-        cy.visit(href);
-        cy.url().should('include', href);
-        cy.title().should('include', linkTitle);
-        cy.go('back');
-      });
-    });
+    cy.checkLinksUrlsTitles('#menu-footer-nav a');
   });
 });

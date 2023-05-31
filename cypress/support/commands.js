@@ -46,12 +46,25 @@ Cypress.Commands.add('specialCategory', ($selector1, $selector2) => {
     });
 });
 
-Cypress.Commands.add('checkLink', ($selector) => {
+Cypress.Commands.add('requestCheckLink', ($selector) => {
   cy.get($selector).should('be.visible');
   cy.get($selector).each(($el) => {
     const linkHref = $el.attr('href');
     cy.request(linkHref).then((response) => {
       expect(response.status).to.eq(200);
+    });
+  });
+});
+
+Cypress.Commands.add('checkLinksUrlsTitles', ($selector) => {
+  cy.get('#menu-footer-nav a').each(($link) => {
+    cy.wrap($link).then(($link) => {
+      const href = $link.attr('href');
+      const linkTitle = $link.text().trim();
+      cy.visit(href);
+      cy.url().should('include', href);
+      cy.title().should('include', linkTitle);
+      cy.go('back');
     });
   });
 });
