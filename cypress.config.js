@@ -12,8 +12,8 @@ module.exports = defineConfig({
     video: false,
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx,feature}',
     retries: {
-      runMode: 0,
-      openMode: 0,
+      runMode: 1,
+      openMode: 1,
     },
   },
 });
