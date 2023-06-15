@@ -79,6 +79,13 @@ Cypress.Commands.add('checkIndex', ($selector) => {
   });
 });
 
+Cypress.Commands.add('checkH1', ($selector) => {
+  cy.get($selector).then(($h1) => {
+    const h1 = $h1.text();
+    cy.get($selector).should('have.text', h1);
+  });
+});
+
 //
 //
 // -- This is a parent command --

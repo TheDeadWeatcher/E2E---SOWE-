@@ -36,10 +36,7 @@ describe('Sowe - home page - E2E', () => {
   it('Should click on cart, verify url, title, back to shop button', () => {
     cy.get('#cart-icon-count').click();
     cy.url().should('eq', url.cartUrl);
-    cy.get('p.cart-empty.woocommerce-info').then(($title) => {
-      const title = $title.text();
-      cy.get('p.cart-empty.woocommerce-info').should('have.text', title);
-    });
+    cy.checkH1('p.cart-empty.woocommerce-info');
     cy.get('.return-to-shop').contains('Wróć do sklepu').should('be.visible').click();
     cy.url().should('eq', url.shopUrl);
   });

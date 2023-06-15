@@ -3,6 +3,8 @@
     "cartUrl": "https://www.sowe.pl/koszyk/",
     "shopUrl": "https://www.sowe.pl/sklep/",
     "contactUrl": "https://www.sowe.pl/contact/",
-    "czapleProdukt": "https://www.sowe.pl/produkt/komplet-zaslon-czaple/"
+    "czapleProdukt": "https://www.sowe.pl/produkt/komplet-zaslon-czaple/",
+    "zaslonyUrl": "https://www.sowe.pl/kategoria-produktu/zaslony/"
+
    
 }
