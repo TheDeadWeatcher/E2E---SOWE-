@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "open": "npx cypress open",
-    "spec": "npx cypress run --spec 'cypress/e2e/productPage.cy.js'",
+    "spec": "npx cypress run --spec 'cypress/e2e/cartPage.cy.js'",
     "all": "npx cypress run --e2e 'cypress/e2e/*.cy.js'",
     "chrome": "npx cypress run --browser chrome --spec 'cypress/e2e/home.cy.js'",
     "firefox": "npm run spec -- --browser firefox",
