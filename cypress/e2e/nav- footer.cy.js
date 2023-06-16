@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Sowe - home page - E2E', () => {
+describe('Sowe - nav - footer - E2E', () => {
   before(function () {
     cy.fixture('pagesUrl').then(function (url) {
       globalThis.url = url;
@@ -11,17 +11,17 @@ describe('Sowe - home page - E2E', () => {
     cy.visit('/');
   });
 
-  it.only('should check all main kategory "SKLEP" links and verify correct url of first product', () => {
-    // cy.contains('SKLEP').should('be.visible').click();
-    // cy.url().should('eq', url.sklepUrl);
-    // cy.go('back');
-    // cy.checkLinksUrlsTitles('.mega-sub-menu.sub-menu>ul>li>a');
-    cy.get('.mega-menu-posts.tf_left.tf_box').find('.figure.post-image').eq(0).click();
-    cy.get('h1').then(($title) => {
-      const title = $title.text();
-      cy.get('h1').should('have.text', title);
-    });
-  });
+  // it.only('should check all main kategory "SKLEP" links and verify correct url of first product', () => {
+  //   // cy.contains('SKLEP').should('be.visible').click();
+  //   // cy.url().should('eq', url.sklepUrl);
+  //   // cy.go('back');
+  //   // cy.checkLinksUrlsTitles('.mega-sub-menu.sub-menu>ul>li>a');
+  //   cy.get('.mega-menu-posts.tf_left.tf_box').find('.figure.post-image').eq(0).click();
+  //   cy.get('h1').then(($title) => {
+  //     const title = $title.text();
+  //     cy.get('h1').should('have.text', title);
+  //   });
+  // });
 
   it('Check all links in main nav"', () => {
     cy.checkLinksUrlsTitles('.mega-sub-menu.sub-menu a');

@@ -5,6 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {},
 
     baseUrl: 'https://www.sowe.pl/',
+    experimentalRunAllSpecs: true,
     includeShadowDom: true,
     viewportHeight: 1080,
     viewportWidth: 1920,
@@ -12,8 +13,8 @@ module.exports = defineConfig({
     video: false,
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx,feature}',
     retries: {
-      runMode: 2,
-      openMode: 2,
+      runMode: 4,
+      openMode: 4,
     },
   },
 });

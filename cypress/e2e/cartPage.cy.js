@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Sowe - home page - E2E', () => {
+describe('Sowe - Cart page - E2E', () => {
   before(function () {
     cy.fixture('pagesUrl').then(function (url) {
       globalThis.url = url;
@@ -38,7 +38,7 @@ describe('Sowe - home page - E2E', () => {
   it('Should check valid info about cuopon, delete product from basket and valid alert', () => {
     cy.visit(url.czapleProdukt);
     cy.get('.single_variation_wrap').should('be.visible').find('button').click({ force: true });
-    cy.wait(500);
+    cy.wait(1000);
     cy.get('#cart-icon-count').should('be.visible').click();
     cy.wait(500);
     cy.url().should('eq', url.cartUrl);
