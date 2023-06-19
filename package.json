@@ -6,12 +6,12 @@
   "scripts": {
     "open": "npx cypress open",
     "spec": "npx cypress run --spec 'cypress/e2e/cartPage.cy.js'",
-    "all": "npx cypress run --e2e 'cypress/e2e/*.cy.js'",
+    "all": "npx cypress run --e2e 'cypress/e2e/*.cy.js' --record --key 6e45d275-8818-4e85-b148-b5f970823575",
     "chrome": "npx cypress run --browser chrome --spec 'cypress/e2e/home.cy.js'",
     "firefox": "npm run spec -- --browser firefox",
     "edge": "npm run spec -- --browser edge",
     "browser": "npm run spec -- --browser firefox & npm run spec -- --browser edge npm run spec -- --browser chrome",
-    "browserAll": "npm run all -- --browser firefox & npm run all -- --browser edge npm run all -- --browser chrome"
+    "browserAll": "npm run all -- --browser firefox & npm run all -- --browser edge npm run all -- --browser chrome "
   },
   "author": "Bartosz Jasyk",
   "license": "ISC",
