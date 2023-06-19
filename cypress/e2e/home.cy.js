@@ -74,7 +74,7 @@ describe('Sowe - home page - E2E', () => {
     cy.url().should('eq', url.contactUrl);
   });
 
-  it('Verify visiblity "Nowości" section also verify lenght, correct url of section item', () => {
+  it.only('Verify visiblity "Nowości" section also verify lenght, correct url of section item', () => {
     cy.get('#tb_7b96d76').find('.product_title').should('have.length', 4);
     cy.specialCategory('#tb_7b96d76', '.product_title a');
   });
