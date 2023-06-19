@@ -32,7 +32,7 @@ describe('Sowe - wyc - contac page - mobile  - E2E', () => {
     cy.get('.tb_text_wrap').find('p').eq(3).should('contain', 'Realizujemy niestandardowe zamówienia');
   });
 
-  it.only('should fill correctly data, send the message, verify text info after send', () => {
+  it('should fill correctly data, send the message, verify text info after send', () => {
     cy.get('#tb_rk8r244-contact-name').type('Bartosz', { force: true });
     cy.get('#tb_rk8r244-contact-email').type('bartosz@gmail.com', { force: true });
     cy.get('#tb_rk8r244-contact-subject').type('123456789', { force: true });

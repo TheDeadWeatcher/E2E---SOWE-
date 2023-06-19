@@ -45,7 +45,7 @@ describe('Sowe - home page - mobile - E2E', () => {
     cy.url().should('eq', url.shopUrl);
   });
 
-  it.only('should search for a valid product', () => {
+  it('should search for a valid product', () => {
     cy.get('#menu-icon').should('be.visible').click({ force: true });
     const searchTerm = 'Komplet zasłon Czaple';
     cy.get('[aria-label="Search"]').eq(0).should('exist').click({ force: true });

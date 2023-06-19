@@ -41,7 +41,7 @@ describe('Sowe - shop page - Mobile - E2E', () => {
     cy.checkH1('.product_title.entry-title');
   });
 
-  it.only('Should check visibility currencies manu', () => {
+  it('Should check visibility currencies manu', () => {
     cy.get('.wmc-currency-symbol').eq(2).click({ force: true });
     cy.get('.wmc-list-currencies').should('be.visible');
     cy.get('.wmc-title').should('contain', 'Select your currency');
