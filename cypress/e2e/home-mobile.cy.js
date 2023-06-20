@@ -12,12 +12,6 @@ describe('Sowe - home page - mobile - E2E', () => {
     cy.visit('/');
   });
 
-  Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false;
-  });
-
   it('Should open home page, verify url and title', () => {
     cy.url().should('eq', url.homeUrl);
     cy.title().should('contain', 'Sowe');

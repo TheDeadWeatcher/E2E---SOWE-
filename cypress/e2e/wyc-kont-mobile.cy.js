@@ -12,12 +12,6 @@ describe('Sowe - wyc - contac page - mobile  - E2E', () => {
     cy.visit(url.contactUrl);
   });
 
-  Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false;
-  });
-
   it('Should verify correct url and title', () => {
     cy.url().should('eq', url.contactUrl);
     cy.title().should('eq', 'Kontakt – Sowe Curtains zasłony do salonu');

@@ -11,12 +11,6 @@ describe('Sowe - Cart page - E2E', () => {
   //   cy.visit(url.czapleProdukt);
   // });
 
-  Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false;
-  });
-
   it('Should add product to the cart, open cart page, procced paymant to the final stage', () => {
     cy.visit(url.czapleProdukt);
     cy.get('.single_variation_wrap').should('be.visible').find('button').click({ force: true });

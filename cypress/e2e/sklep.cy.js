@@ -11,12 +11,6 @@ describe('Sowe - shop page - E2E', () => {
     cy.visit(url.shopUrl);
   });
 
-  Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false;
-  });
-
   it('Should open sklep page and verify url', () => {
     cy.url().should('eq', url.shopUrl);
     cy.title().should('eq', 'Sklep – Sowe Curtains zasłony do salonu');
