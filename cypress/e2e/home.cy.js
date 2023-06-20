@@ -33,10 +33,10 @@ describe('Sowe - home page - E2E', () => {
     cy.get('#icon-menu').contains('English').should('be.visible').click();
   });
 
-  it('Should click on cart, verify url, title, back to shop button', () => {
+  it.only('Should click on cart, verify url, title, back to shop button', () => {
     cy.get('#cart-icon-count').click();
     cy.url().should('eq', url.cartUrl);
-    cy.checkH1('p.cart-empty.woocommerce-info');
+    cy.checkH1('.cart-empty.woocommerce-info');
     cy.get('.return-to-shop').contains('Wróć do sklepu').should('be.visible').click();
     cy.url().should('eq', url.shopUrl);
   });

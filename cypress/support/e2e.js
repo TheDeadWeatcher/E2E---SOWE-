@@ -39,3 +39,12 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   // failing the test
   return false;
 });
+
+// block analitics during the test case
+
+Cypress.on('window:before:load', (win) => {
+  // because this is called before any scripts
+  // have loaded - the ga function is undefined
+  // so we need to create it.
+  win.ga = cy.stub().as('ga');
+});

@@ -39,7 +39,7 @@ describe('Sowe - Cart page - E2E', () => {
     cy.get('#coupon_code').type('123 {enter}');
     cy.get('[role="alert"] li').should('contain', 'nie istnieje!');
     cy.get('.remove').click();
-    cy.get('p.cart-empty.woocommerce-info').should('contain', 'Twój koszyk aktualnie jest pusty.');
+    cy.get('.cart-empty.woocommerce-info').should('contain', 'Twój koszyk aktualnie jest pusty.');
     cy.contains('Wróć do sklepu').click();
     cy.url().should('eq', url.shopUrl);
   });

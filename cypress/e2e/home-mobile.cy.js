@@ -34,7 +34,7 @@ describe('Sowe - home page - mobile - E2E', () => {
   it('Should click on cart, verify url, title, back to shop button', () => {
     cy.get('#cart-link-mobile').click();
     cy.url().should('eq', url.cartUrl);
-    cy.checkH1('p.cart-empty.woocommerce-info');
+    cy.checkH1('.cart-empty.woocommerce-info');
     cy.contains('Wróć do sklepu').should('be.visible').click({ force: true });
     cy.url().should('eq', url.shopUrl);
   });

@@ -7,6 +7,7 @@ module.exports = defineConfig({
 
     baseUrl: 'https://www.sowe.pl/',
     experimentalRunAllSpecs: false,
+    bloclHosts: ['www.google-analytics.com', 'ssl.google-analytics.com'],
     includeShadowDom: true,
     viewportHeight: 1080,
     viewportWidth: 1920,
