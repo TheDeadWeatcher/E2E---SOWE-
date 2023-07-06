@@ -12,6 +12,7 @@ module.exports = defineConfig({
     viewportHeight: 1080,
     viewportWidth: 1920,
     hideXHRInCommandLog: true,
+    chromeWebSecurity: false,
     video: false,
     videoUploadOnPasses: false,
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx,feature}',

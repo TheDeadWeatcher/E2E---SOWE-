@@ -23,12 +23,14 @@ describe('Sowe - home page - mobile - E2E', () => {
 
   it('Should click on GTtranslate and verify visibilty of popup also correct language', () => {
     // cy.wait(1000);
+    cy.get('div#mobile-menu.sidemenu.sidemenu-off.tf_scrollbar').invoke('show');
     cy.get('#menu-icon').should('be.visible').click({ force: true });
-    cy.get('#mobile-menu').should('be.visible').find('#icon-menu').invoke('show');
-    cy.contains('Polish').click();
+    cy.get('span').contains('Polish').click({ force: true });
+    // cy.get('#mobile-menu').find('.header-icons').should('be.visible');
+    // cy.contains('Polish').click({ force: true });
     cy.get('.gt_languages a').should('have.length', 6);
-    // cy.get('.gt_languages').contains('English').should('be.visible').click();
-    // cy.get('#icon-menu').contains('English').should('be.visible').click();
+    cy.get('.gt_languages a').contains('English').click({ force: true });
+    cy.get('span').contains('English').should('have.text', 'English');
   });
 
   it('Should click on cart, verify url, title, back to shop button', () => {

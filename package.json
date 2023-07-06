@@ -11,12 +11,11 @@
     "firefox": "npm run spec -- --browser firefox",
     "edge": "npm run spec -- --browser edge",
     "browser": "npm run spec -- --browser firefox & npm run spec -- --browser edge npm run spec -- --browser chrome",
-    "browserAll": "npm run all -- --browser firefox & npm run all -- --browser edge npm run all -- --browser chrome "
-    
+    "browserAll": "npm run all -- --browser firefox & npm run all -- --browser edge npm run all -- --browser chrome --record --key 6e45d275-8818-4e85-b148-b5f970823575"
   },
   "author": "Bartosz Jasyk",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.14.0"
+    "cypress": "^12.16.0"
   }
 }

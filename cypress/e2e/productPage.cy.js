@@ -19,7 +19,7 @@ describe('Sowe - product page  - E2E', () => {
 
   it('Should add product with 250 size to the cart then check the basket icon (correct number of items)', () => {
     cy.get('#wymiary').select('147 x 250 cm', { force: true }).should('have.value', '147 x 250 cm');
-    cy.get('.single_variation_wrap').should('be.visible').find('button').click({ force: true });
+    cy.get('.single_variation_wrap').should('be.visible').find('[type="submit"]').click({ force: true });
     cy.get('span.icon-menu-count').should('contain', 1);
     cy.get('span.price').should('contain', '1 200,00');
   });

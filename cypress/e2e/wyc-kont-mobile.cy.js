@@ -27,12 +27,13 @@ describe('Sowe - wyc - contac page - mobile  - E2E', () => {
   });
 
   it('should fill correctly data, send the message, verify text info after send', () => {
+    cy.wait(3000);
     cy.get('#tb_rk8r244-contact-name').type('Bartosz', { force: true });
     cy.get('#tb_rk8r244-contact-email').type('bartosz@gmail.com', { force: true });
     cy.get('#tb_rk8r244-contact-subject').type('123456789', { force: true });
     cy.get('#tb_rk8r244-contact-message').type('Test2023', { force: true });
     cy.get('#tb_rk8r244-sendcopy').check({ force: true });
-    cy.get('.btn.btn-primary').eq(1).should('be.visible').click();
+    cy.get('button.btn.btn-primary').eq(1).should('be.visible').click();
     cy.get('p.ui.light-green.contact-success').should('contain', 'Message sent. Thank you.');
   });
 });

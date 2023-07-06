@@ -26,13 +26,20 @@ describe('Sowe - wyc - contac page  - E2E', () => {
   });
 
   it('should fill correctly data, send the message, verify text info after send', () => {
-    cy.get('[id="tb_2508a3f-contact-name"]').type('Bartosz', { force: true });
-    cy.get('[id="tb_2508a3f-contact-email"]').type('bartosz@gmail.com', { force: true });
-    cy.get('[id="tb_2508a3f-contact-subject"]').type('123456789', { force: true });
-    cy.get('[id="tb_2508a3f-contact-message"]').type('Test2023', { force: true });
+    cy.wait(3000);
+    cy.get('[id="tb_2508a3f-contact-subject"]').should('be.visible');
+    cy.get('[id="tb_2508a3f-contact-name"]').should('be.visible');
+    cy.get('[id="tb_2508a3f-contact-name"]').type('Bartadasosz', { force: true });
+    // cy.wait(1000);
+    cy.get('[id="tb_2508a3f-contact-email"]').should('be.visible');
+    // cy.wait(1000);
+    cy.get('[id="tb_2508a3f-contact-email"]').type('bartasdosz@gmail.com', { force: true });
     cy.get('[id="tb_2508a3f-sendcopy"]').check();
-    cy.contains('WYŚLIJ').click({ force: true });
-    cy.wait(5000);
+    // cy.wait(1000);
+    cy.get('.btn.btn-primary').eq(0).scrollIntoView();
+    // cy.wait(1000);
+    cy.get('.btn.btn-primary').eq(0).click();
+    // cy.wait(1000);
     cy.get('p.ui.light-green.contact-success').should('contain', 'Message sent. Thank you.');
   });
 });
