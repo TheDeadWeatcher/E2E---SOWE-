@@ -6,16 +6,28 @@
   "scripts": {
     "open": "npx cypress open",
     "spec": "npx cypress run --spec 'cypress/e2e/home.cy.js' --record --key 6e45d275-8818-4e85-b148-b5f970823575",
+    "spec2": "npx cypress run --spec 'cypress/e2e/cos/*.cy.js' --record --key 6e45d275-8818-4e85-b148-b5f970823575",
     "all": "npx cypress run --e2e 'cypress/e2e/*.cy.js' --record --key 6e45d275-8818-4e85-b148-b5f970823575",
     "chrome": "npx cypress run --browser chrome --spec 'cypress/e2e/*.cy.js' --record --key 6e45d275-8818-4e85-b148-b5f970823575",
     "firefox": "npm run spec -- --browser firefox",
     "edge": "npm run spec -- --browser edge",
     "browser": "npm run spec -- --browser firefox & npm run spec -- --browser edge npm run spec -- --browser chrome",
-    "browserAll": "npm run all -- --browser firefox & npm run all -- --browser edge npm run all -- --browser chrome --record --key 6e45d275-8818-4e85-b148-b5f970823575"
+    "browserAll": "npm run all -- --browser firefox & npm run all -- --browser edge npm run all -- --browser chrome --record --key 6e45d275-8818-4e85-b148-b5f970823575",
+    "junit-merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/results.xml",
+    "delete-junit-report": "rm -rf cypress/results/junit/results.xml",
+    "delete-results": "rm -rf cypress/results/* || true",
+    "mochawesome-merge": "npx mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && npx marge mochawesome.json",
+    "delete-mochawesome-report": "rm -rf mochawesome-report/* || true",
+    "regression": "npm run delete-results && npm run delete-mochawesome-report && npm run spec2 && npm run mochawesome-merge"
   },
   "author": "Bartosz Jasyk",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.16.0"
+    "cypress": "^12.16.0",
+    "cypress-multi-reporters": "^1.6.3",
+    "mocha-junit-reporter": "^2.2.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }

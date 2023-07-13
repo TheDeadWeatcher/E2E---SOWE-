@@ -11,6 +11,10 @@ module.exports = defineConfig({
     includeShadowDom: true,
     viewportHeight: 1080,
     viewportWidth: 1920,
+    reporter: 'cypress-multi-reporters',
+    reporterOptions: {
+      configFile: 'reporter-config.json',
+    },
     hideXHRInCommandLog: true,
     chromeWebSecurity: false,
     video: false,
