@@ -12,13 +12,13 @@
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
-    "start": "2023-07-13T12:57:11.297Z",
-    "end": "2023-07-13T12:57:44.044Z",
-    "duration": 32747
+    "start": "2023-07-13T13:13:31.564Z",
+    "end": "2023-07-13T13:13:51.297Z",
+    "duration": 19733
   },
   "results": [
     {
-      "uuid": "015cdecb-ec25-40f6-a44d-dbbcfdc0d6c9",
+      "uuid": "9b592af6-9b64-4855-a15b-d167c905e823",
       "title": "",
       "fullFile": "cypress\\e2e\\home.cy.js",
       "file": "cypress\\e2e\\home.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "67bf91a7-f7aa-498f-aade-04f1cfaebc1b",
+          "uuid": "3ab26c05-dab0-4768-ac0a-c35208724291",
           "title": "Sowe - home page - E2E",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Should click on cart, verify url, title, back to shop button",
               "fullTitle": "Sowe - home page - E2E Should click on cart, verify url, title, back to shop button",
               "timedOut": null,
-              "duration": 32718,
+              "duration": 19668,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.get('#cart-icon-count').click();\ncy.url().should('eq', url.cartUrl);\ncy.checkH1('.cart-empty.woocommerce-info');\ncy.get('.return-to-shop').contains('Wróć do sklepu').should('be.visible').click();\ncy.url().should('eq', url.shopUrl);",
               "err": {},
-              "uuid": "e40d0d9f-e5f6-4823-970c-5ba3ab20f2c7",
-              "parentUUID": "67bf91a7-f7aa-498f-aade-04f1cfaebc1b",
+              "uuid": "0e63bcbe-5928-4d10-9aaf-4191655d2250",
+              "parentUUID": "3ab26c05-dab0-4768-ac0a-c35208724291",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "e40d0d9f-e5f6-4823-970c-5ba3ab20f2c7"
+            "0e63bcbe-5928-4d10-9aaf-4191655d2250"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 32718,
+          "duration": 19668,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
