@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2023-07-13T13:21:41.131Z",
-    "end": "2023-07-13T13:22:01.816Z",
-    "duration": 20685,
+    "start": "2023-07-13T13:51:22.483Z",
+    "end": "2023-07-13T13:51:44.341Z",
+    "duration": 21858,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "fc4037ff-96bd-4ddc-93b9-a835c41b47e5",
+      "uuid": "f716163a-168f-4c20-b24d-876ddae6f472",
       "title": "",
       "fullFile": "cypress\\e2e\\home.cy.js",
       "file": "cypress\\e2e\\home.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "3a5c0ca5-7dac-473b-895f-11eb023fe921",
+          "uuid": "45739cc1-2d85-4745-bc62-96fc73f31ebf",
           "title": "Sowe - home page - E2E",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Should click on cart, verify url, title, back to shop button",
               "fullTitle": "Sowe - home page - E2E Should click on cart, verify url, title, back to shop button",
               "timedOut": null,
-              "duration": 20623,
+              "duration": 21829,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.get('#cart-icon-count').click();\ncy.url().should('eq', url.cartUrl);\ncy.checkH1('.cart-empty.woocommerce-info');\ncy.get('.return-to-shop').contains('Wróć do sklepu').should('be.visible').click();\ncy.url().should('eq', url.shopUrl);",
               "err": {},
-              "uuid": "cbfd14f7-96a0-4fe2-8757-f7f2c37ae52a",
-              "parentUUID": "3a5c0ca5-7dac-473b-895f-11eb023fe921",
+              "uuid": "65e866b1-16f5-41d6-b704-e88fb9229581",
+              "parentUUID": "45739cc1-2d85-4745-bc62-96fc73f31ebf",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "cbfd14f7-96a0-4fe2-8757-f7f2c37ae52a"
+            "65e866b1-16f5-41d6-b704-e88fb9229581"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 20623,
+          "duration": 21829,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
