@@ -6,6 +6,7 @@
   "scripts": {
     "open": "npx cypress open",
     "spec": "npx cypress run --spec 'cypress/e2e/nav-footer.cy.js' --record --key 6e45d275-8818-4e85-b148-b5f970823575",
+    "spec-allure": "npx cypress run --spec 'cypress/e2e/nav-footer.cy.js' --env allure=true",
     "spec2": "npx cypress run --spec 'cypress/e2e/cos/*.cy.js' --record --key 6e45d275-8818-4e85-b148-b5f970823575",
     "all": "npx cypress run --e2e 'cypress/e2e/*.cy.js' --record --key 6e45d275-8818-4e85-b148-b5f970823575",
     "chrome": "npx cypress run --browser chrome --spec 'cypress/e2e/*.cy.js' --record --key 6e45d275-8818-4e85-b148-b5f970823575",
@@ -24,6 +25,7 @@
   "author": "Bartosz Jasyk",
   "license": "ISC",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.40.0",
     "cypress": "^12.16.0",
     "cypress-multi-reporters": "^1.6.3",
     "mocha-junit-reporter": "^2.2.1",
