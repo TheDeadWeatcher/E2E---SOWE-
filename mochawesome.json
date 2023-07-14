@@ -12,55 +12,55 @@
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
-    "start": "2023-07-13T13:51:22.483Z",
-    "end": "2023-07-13T13:51:44.341Z",
-    "duration": 21858
+    "start": "2023-07-14T13:32:24.016Z",
+    "end": "2023-07-14T13:32:44.242Z",
+    "duration": 20226
   },
   "results": [
     {
-      "uuid": "f716163a-168f-4c20-b24d-876ddae6f472",
+      "uuid": "89f6941e-f48e-4e8c-be05-2bac08eefe0d",
       "title": "",
-      "fullFile": "cypress\\e2e\\home.cy.js",
-      "file": "cypress\\e2e\\home.cy.js",
+      "fullFile": "cypress\\e2e\\nav-footer.cy.js",
+      "file": "cypress\\e2e\\nav-footer.cy.js",
       "beforeHooks": [],
       "afterHooks": [],
       "tests": [],
       "suites": [
         {
-          "uuid": "45739cc1-2d85-4745-bc62-96fc73f31ebf",
-          "title": "Sowe - home page - E2E",
+          "uuid": "5166503b-cce7-4776-bd3e-1f253cc03854",
+          "title": "Sowe - nav - footer - E2E",
           "fullFile": "",
           "file": "",
           "beforeHooks": [],
           "afterHooks": [],
           "tests": [
             {
-              "title": "Should click on cart, verify url, title, back to shop button",
-              "fullTitle": "Sowe - home page - E2E Should click on cart, verify url, title, back to shop button",
+              "title": "Should verify visibility of all links in footer section also check title and url",
+              "fullTitle": "Sowe - nav - footer - E2E Should verify visibility of all links in footer section also check title and url",
               "timedOut": null,
-              "duration": 21829,
+              "duration": 20202,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.get('#cart-icon-count').click();\ncy.url().should('eq', url.cartUrl);\ncy.checkH1('.cart-empty.woocommerce-info');\ncy.get('.return-to-shop').contains('Wróć do sklepu').should('be.visible').click();\ncy.url().should('eq', url.shopUrl);",
+              "code": "cy.get('#footer a').should('have.length', 9);\n// logo\ncy.get('#media_image-2').click({\n  force: true\n});\ncy.url().should('eq', url.homeUrl);\n// rest\ncy.checkLinksUrlsTitles('#menu-footer-nav a');",
               "err": {},
-              "uuid": "65e866b1-16f5-41d6-b704-e88fb9229581",
-              "parentUUID": "45739cc1-2d85-4745-bc62-96fc73f31ebf",
+              "uuid": "07e3ad77-f5f2-4dd0-85b3-1e2bb23960c7",
+              "parentUUID": "5166503b-cce7-4776-bd3e-1f253cc03854",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "65e866b1-16f5-41d6-b704-e88fb9229581"
+            "07e3ad77-f5f2-4dd0-85b3-1e2bb23960c7"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 21829,
+          "duration": 20202,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
